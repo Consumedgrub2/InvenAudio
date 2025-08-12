@@ -1,0 +1,16 @@
+[
+{
+  "modid": "invenaudio",
+  "name": "InvenAudio",
+  "description": "InvenAudio is a Minecraft 1.7.10 and 1.12.2 mod adding realistic inventory foley sounds.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Consumedgrub2"],
+  "credits": "1.7.10 is the best minecraft version",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
