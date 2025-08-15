@@ -7,24 +7,30 @@ build/
 out/
 classes/
 run/
+.factorypath
 
 # eclipse 
 *.launch
 .settings
 .classpath
 .project
+.metadata
 eclipse
+*.launch
 
 # idea
-
 .idea/
 *.iml
 *.ipr
 *.iws
 
 # vscode
-
 .settings/
 .vscode/
 bin/
 .classpath
+
+# other
+bin/
+jars/
+/.nb-gradle/
