@@ -11,7 +11,6 @@ public class InventoryHandler {
     public void onGuiOpen(GuiOpenEvent event) {
         if (event.gui != null) {
             if (event.gui instanceof GuiContainer) {
-                Constants.LOGGER.info("This is an inventory!");
                 currentOpenGuiContainer = (GuiContainer) event.gui;
             }
         }
