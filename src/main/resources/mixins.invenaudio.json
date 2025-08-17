@@ -5,6 +5,6 @@
     "refmap": "mixins.invenaudio.refmap.json",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "MixinGuiMainMenu"
+        "MixinGuiContainer"
     ]
 }

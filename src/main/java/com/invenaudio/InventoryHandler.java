@@ -1,31 +1,18 @@
 package com.invenaudio;
 
-import com.invenaudio.InvenAudio;
-import com.invenaudio.SoundResources;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.MouseEvent;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraftforge.client.event.GuiOpenEvent;
 
 public class InventoryHandler {
-    public static Minecraft mc = Minecraft.getMinecraft();
-    public static boolean isGuiOpen = false;
+    public static GuiContainer currentOpenGuiContainer;
 
     @SubscribeEvent
-    public void guiEvent(GuiScreenEvent.ActionPerformedEvent guiScreenEvent) {
-        if (true) {
-            System.out.println("gui event");
-        }
-    }
-    @SubscribeEvent
-    public void onMouseInput(MouseEvent mouseEvent) {
-        if (mouseEvent.button == 0) {
-            if (true) {
-                System.out.println("In chest");
-                if (mc.thePlayer.inventory.getCurrentItem() != null) {
-                    System.out.println("Mouse 0 was clicked! Item grabbed: " + mc.thePlayer.inventory.getCurrentItem().getDisplayName().toString());
-                }
+    public void onGuiOpen(GuiOpenEvent event) {
+        if (event.gui != null) {
+            if (event.gui instanceof GuiContainer) {
+                Constants.LOGGER.info("This is an inventory!");
+                currentOpenGuiContainer = (GuiContainer) event.gui;
             }
         }
     }
