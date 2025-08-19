@@ -1,6 +1,6 @@
 # InvenAudio
 
-Compiled binaries are on [CurseForge]() and the [Releases]() tab.
+Compiled binaries are on [CurseForge](https://curseforge.com/minecraft/mc-mods/invenaudio), [Modrinth](https://modrinth.com/mod/invenaudio/versions) and the [Releases](https://github.com/Consumedgrub2/InvenAudio/releases) tab.
 
 InvenAudio is a Minecraft 1.7.10 and soon 1.12.2* mod adding realistic inventory foley sounds.
 
@@ -51,5 +51,5 @@ gradlew build
 
 # Licensing
 
-- **IMPORTANT**: The audio files for this project are licensed under **ALL RIGHTS RESERVED**, see [first license]().
-- The source code for this mod is licensed under the **GNU Affero General Public License v3.0**, see [second license]().
+- **IMPORTANT**: The audio files for this project are licensed under **ALL RIGHTS RESERVED**, see [first license](https://github.com/Consumedgrub2/InvenAudio/blob/main/LICENSE).
+- The source code for this mod is licensed under the **GNU Affero General Public License v3.0**, see [second license](https://github.com/Consumedgrub2/InvenAudio/blob/main/LICENSE2).
