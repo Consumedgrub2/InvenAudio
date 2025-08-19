@@ -8,9 +8,9 @@
   "url": "",
   "updateUrl": "",
   "authorList": ["Consumedgrub2"],
-  "credits": "",
+  "credits": "Consumedgrub2",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["unimixins"]
 }
 ]
