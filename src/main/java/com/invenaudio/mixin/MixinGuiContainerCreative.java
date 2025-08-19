@@ -7,11 +7,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.invenaudio.Constants;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.inventory.Slot;
 
-@Mixin(GuiContainer.class)
-public class MixinGuiContainer {
+@Mixin(GuiContainerCreative.class)
+public class MixinGuiContainerCreative {
     @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("HEAD"))
     private void onSlotClick(Slot slot, int slotId, int button, int modifier, CallbackInfo ci) {
         if (slot != null) {

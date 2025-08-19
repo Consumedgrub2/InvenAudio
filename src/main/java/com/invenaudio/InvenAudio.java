@@ -19,16 +19,14 @@ public class InvenAudio
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        //For bullshit forge 1.7.10 lwjgl sound system init error, please comment out during release build.
-        MC.refreshResources();
-        Constants.LOGGER.warn("Refreshed Minecraft resources... Please disable this during production build.");
-
         Constants.LOGGER.info("Playing with InvenAudio Mod version " + Constants.VERSION + ".");
         MinecraftForge.EVENT_BUS.register(new InventoryHandler());
     }
     
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        
+        //For bullshit forge 1.7.10 lwjgl sound system init error, please comment out during release build.
+        MC.refreshResources();
+        Constants.LOGGER.warn("Refreshed Minecraft resources... Please disable this during production build.");
     }
 }
