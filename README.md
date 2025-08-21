@@ -51,4 +51,6 @@ gradlew build
 
 # Licensing
 
+You are granted permission to only use this mod for personal use in modpacks and Minecraft in general. Read more about other permissions in the license.
+
 - **IMPORTANT**: The mod and audio files for this project are licensed under **ALL RIGHTS RESERVED**, see [LICENSE](https://github.com/Consumedgrub2/InvenAudio/blob/main/LICENSE).
