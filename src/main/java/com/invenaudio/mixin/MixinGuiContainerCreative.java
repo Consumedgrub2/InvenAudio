@@ -12,7 +12,7 @@ import net.minecraft.inventory.Slot;
 
 @Mixin(GuiContainerCreative.class)
 public class MixinGuiContainerCreative {
-    @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("TAIL"))
+    @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("HEAD"))
     private void onSlotClick(Slot slot, int slotId, int button, int modifier, CallbackInfo ci) {
         // If the player picks up an item from a slot
         if (slot != null && slot.getHasStack()) {
