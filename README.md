@@ -14,16 +14,16 @@ of the (I think) two working ForgeGradle 1.7.10 MDKs left on the whole fucking i
 
 ## Features
 
-InvenAudio is complete as of version `1.0.0.0`, but I do have some potential future plans to improve it. Currently, it features:
 - Over 100 unique audio files across multiple categories of items/blocks
+- Configurable volume levels for every sound in the mod
 - Compatibility with almost all known GUI interfaces which comprises all vanilla ones and most modded ones that inherit from `GuiContainer`
 - Realistic sounds that aren't Minecrafty (Think [Dynamic Surroundings](https://github.com/mist475/DynamicSurroundings) type sfx)
 - Only features pickup and place inventory sounds, no additional overwhelming sounds like one being played when a GUI opens
 - Specific sfx definitions for more tech orientated mods such as `cog`, `gear`, `coil`, `frame`
-- You can change the sounds utilizing base-Minecraft resource packs through the use of this mod's ID `invenaudio`
+- You can change the sounds utilizing resource packs through the use of this mod's ID `invenaudio`
 
-The sfx are classified under the *Player* category. If the sfx are too loud, you can lower it through the *Player* slider without needing to turn the master volume down.
-You can also adjust each individual sfx volume level using the config file.
+The sfx are classified under the *Player* category. If the sfx are too loud, you can lower them with the *Player* slider without needing to turn the master volume down, 
+or you can adjust each individual sound's volume through the mod's config file.
 
 ## Dependencies
 
@@ -32,7 +32,6 @@ You can also adjust each individual sfx volume level using the config file.
 ## Planned Features
 
 - 1.12.2 port* (Next feature to be worked on) (Higher than 1.12.2 port? Womp womp, absolutely not)
-- Add config options in general (Things like volume control for the mod or specific sfx configurations)
 - More sounds
 
 ## Building
