@@ -24,7 +24,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0.0.0"
+version = "1.1.0"
 group= "com.invenaudio" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "InvenAudio"
 def modid = "invenaudio"
@@ -90,7 +90,7 @@ repositories {
     }
 }
 
-def unimixinsVersion = "0.1.22"
+def unimixinsVersion = "0.3.1"
 
 dependencies {
     implementation("com.github.LegacyModdingMC.UniMixins:unimixins-all-1.7.10:$unimixinsVersion:dev")
