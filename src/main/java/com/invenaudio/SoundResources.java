@@ -4,26 +4,25 @@ import java.util.HashMap;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.config.Configuration;
 
 public class SoundResources {
-    //Sound hashmaps
+    // Sound hashmaps
     public static final HashMap<String, ResourceLocation> generalVanillaSoundHashMap = new HashMap<>();
     public static final HashMap<String, ResourceLocation> generalModdedSoundHashMap = new HashMap<>();
     public static final HashMap<String, ResourceLocation> specificModdedSoundHashMap = new HashMap<>();
 
-    //Final fallback if no string sound association is found in hashmaps
-    private static final ResourceLocation finalFallbackSound = new ResourceLocation("invenaudio:invenaudio_default");
+    // Final fallback if no string sound association is found in hashmaps
+    public static final ResourceLocation finalFallbackSound = new ResourceLocation("invenaudio:invenaudio_default");
 
     public static ResourceLocation getInventorySoundType(String itemName) {
         String[] wordsInItemName = itemName.toLowerCase().split(" ");
         ResourceLocation resourceLocationToSound = searchHashMapsInOrder(itemName.toLowerCase());
-        //First check for exact string matches
+        // First check for exact string matches
         if (resourceLocationToSound != null) {
             return resourceLocationToSound;
         }
         else {
-            //Secondly, for each map, check every word in the itemName (Pick the most complex sounding association)
+            // Secondly, for each map, check every word in the itemName (Pick the most complex sounding association)
             for (int i = 0; i < 3; i++) {
                 for (String word : wordsInItemName) {
                     resourceLocationToSound = searchSingleHashMap(word, i);
@@ -32,7 +31,7 @@ public class SoundResources {
                     }
                 }
             }
-            //Finally, if no association is found, play the default sound
+            // Finally, if no association is found, play the default sound
             return finalFallbackSound;
         }
     }
@@ -40,8 +39,14 @@ public class SoundResources {
     public static void playInventorySoundAtPlayer(ResourceLocation resourceLocation) {
         if (resourceLocation != null) {
             EntityClientPlayerMP player = InvenAudio.MC.thePlayer;
+            // Check to make sure the player exists, is a client and whether the fallback sound is used
             if (player != null && player.worldObj.isRemote) {
-                player.playSound(resourceLocation.toString(), 1.0f, 1.0f);
+                if (!resourceLocation.toString().equals(finalFallbackSound.toString())){
+                    player.playSound(resourceLocation.toString(), InvenAudioConfig.sfxVolumeMap.get(resourceLocation).floatValue(), 1.0f);
+                }
+                else {
+                    player.playSound(resourceLocation.toString(), (float) Math.max(0.0, Math.min(1.0, InvenAudioConfig.fallbackSoundProperty.getDouble())), 1.0f);
+                }
             }
         }
     }
@@ -66,7 +71,7 @@ public class SoundResources {
     }
 
     public static void registerStringSoundAssociations() {
-        //[Searched last] General vanilla strings (Basic items, materials and tools in the vanilla game)
+        // [Searched last] General vanilla strings (Basic items, materials and tools in the vanilla game)
         generalVanillaSoundHashMap.put("stone", new ResourceLocation("invenaudio:invenaudio_stone"));
         generalVanillaSoundHashMap.put("cobble", new ResourceLocation("invenaudio:invenaudio_cobble"));
         generalVanillaSoundHashMap.put("grass", new ResourceLocation("invenaudio:invenaudio_grass"));
@@ -123,10 +128,10 @@ public class SoundResources {
         generalVanillaSoundHashMap.put("obsidian", new ResourceLocation("invenaudio:invenaudio_obsidian"));
         generalVanillaSoundHashMap.put("ingot", new ResourceLocation("invenaudio:invenaudio_ingot"));
 
-        //LOL
+        // LOL
         generalVanillaSoundHashMap.put("anvil", new ResourceLocation("invenaudio:invenaudio_anvil"));
 
-        //[Searched second] General modded strings (Basic items, materials and tools that most mods add)
+        // [Searched second] General modded strings (Basic items, materials and tools that most mods add)
         generalModdedSoundHashMap.put("copper", new ResourceLocation("invenaudio:invenaudio_copper"));
         generalModdedSoundHashMap.put("tin", new ResourceLocation("invenaudio:invenaudio_tin"));
         generalModdedSoundHashMap.put("aluminum", new ResourceLocation("invenaudio:invenaudio_aluminum"));
@@ -156,7 +161,7 @@ public class SoundResources {
         generalModdedSoundHashMap.put("niter", new ResourceLocation("invenaudio:invenaudio_niter"));
         generalModdedSoundHashMap.put("shard", new ResourceLocation("invenaudio:invenaudio_shard"));
 
-        //[Searched first] Specific modded strings (Modded items like components, end game things and specialties)
+        // [Searched first] Specific modded strings (Modded items like components, end game things and specialties)
         specificModdedSoundHashMap.put("rod", new ResourceLocation("invenaudio:invenaudio_rod"));
         specificModdedSoundHashMap.put("screw", new ResourceLocation("invenaudio:invenaudio_screw"));
         specificModdedSoundHashMap.put("plate", new ResourceLocation("invenaudio:invenaudio_plate"));

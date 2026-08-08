@@ -28,11 +28,6 @@ public class InvenAudio
     public void init(FMLInitializationEvent event) {
         Constants.LOGGER.info("InvenAudio mod version " + Constants.VERSION);
     }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        //SoundResources.registerStringSoundAssociations();
-    }
 
     public static void playInventorySound(String stackDisplayName){
         if (stackDisplayName != null){
