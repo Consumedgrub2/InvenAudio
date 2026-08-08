@@ -6,27 +6,31 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.invenaudio.InvenAudio;
-import com.invenaudio.SoundResources;
 
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.inventory.Slot;
 
 @Mixin(GuiContainerCreative.class)
 public class MixinGuiContainerCreative {
-    @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("HEAD"))
+    @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("TAIL"))
     private void onSlotClick(Slot slot, int slotId, int button, int modifier, CallbackInfo ci) {
-        //If the player picks up an item from a slot
-        if (slot != null && slot.getHasStack()) {
+        // If the player picks up an item from a slot and the modifier indicates it's not a drag operation
+        if (slot != null && slot.getHasStack() && modifier == 0) {
             String stackDisplayName = slot.getStack().getDisplayName();
-            if (stackDisplayName != null) {
-                SoundResources.playInventorySound(SoundResources.getInventorySoundType(stackDisplayName));
-            }
+            InvenAudio.playInventorySound(stackDisplayName);
         }
-        //If the player is already holding an item while over a slot
-        else if (slot != null && InvenAudio.MC.thePlayer.inventory.getItemStack() != null) {
+        // If the player is already holding an item while over a slot
+        else if (slot != null && InvenAudio.MC.thePlayer.inventory.getItemStack() != null && modifier == 0) {
             String stackDisplayName = InvenAudio.MC.thePlayer.inventory.getItemStack().getDisplayName();
-            if (stackDisplayName != null) {
-                SoundResources.playInventorySound(SoundResources.getInventorySoundType(stackDisplayName));
+            InvenAudio.playInventorySound(stackDisplayName);
+        }
+        // If the player clicks and drags items across slots
+        else if (slot != null && InvenAudio.MC.thePlayer.inventory.getItemStack() != null && modifier == 5){
+            String stackDisplayName = InvenAudio.MC.thePlayer.inventory.getItemStack().getDisplayName();
+            // Prevent the sfx from being played multiple times during a drag operation
+            if (!InvenAudio.playedDragSound) {
+                InvenAudio.playInventorySound(stackDisplayName);
+                InvenAudio.playedDragSound = true;
             }
         }
     }

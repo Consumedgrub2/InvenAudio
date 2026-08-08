@@ -36,7 +36,7 @@ public class SoundResources {
         }
     }
 
-    public static void playInventorySound(ResourceLocation resourceLocation) {
+    public static void playInventorySoundAtPlayer(ResourceLocation resourceLocation) {
         if (resourceLocation != null) {
             EntityClientPlayerMP player = InvenAudio.MC.thePlayer;
             if (player != null && player.worldObj.isRemote) {
