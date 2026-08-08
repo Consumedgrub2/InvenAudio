@@ -14,10 +14,13 @@ import net.minecraft.inventory.Slot;
 public class MixinGuiContainer {
     @Inject(method = "handleMouseClick(Lnet/minecraft/inventory/Slot;III)V", at = @At("TAIL"))
     private void onSlotClick(Slot slot, int slotId, int button, int modifier, CallbackInfo ci) {
-        // If the player picks up an item from a slot and the modifier indicates it's not a drag operation
-        if (slot != null && slot.getHasStack() && modifier == 0) {
-            String stackDisplayName = slot.getStack().getDisplayName();
-            InvenAudio.playInventorySound(stackDisplayName);
+        // If the player picks up an item from a slot
+        if (slot != null && slot.getHasStack()) {
+            // If it's only a pickup or shift-click operation
+            if (modifier == 0 || modifier == 1){
+                String stackDisplayName = slot.getStack().getDisplayName();
+                InvenAudio.playInventorySound(stackDisplayName);
+            }
         }
         // If the player is already holding an item while over a slot
         else if (slot != null && InvenAudio.MC.thePlayer.inventory.getItemStack() != null && modifier == 0) {

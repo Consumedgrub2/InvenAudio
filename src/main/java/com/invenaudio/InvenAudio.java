@@ -5,14 +5,24 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.*;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Constants.MODID, version = Constants.VERSION, name = Constants.NAME, acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS, dependencies = Constants.DEPENDENCIES)
 public class InvenAudio
 {
+    public static Configuration invenAudioConfig;
+
     public static final Minecraft MC = Minecraft.getMinecraft();
 
     // Boolean flag to prevent multiple sfx clips playing at the same time while dragging in inventory
     public static boolean playedDragSound = false;
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+        SoundResources.registerStringSoundAssociations();
+        invenAudioConfig = new Configuration(event.getSuggestedConfigurationFile());
+        InvenAudioConfig.loadConfig(invenAudioConfig);
+    }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -21,7 +31,7 @@ public class InvenAudio
     
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        SoundResources.registerStringSoundAssociations();
+        //SoundResources.registerStringSoundAssociations();
     }
 
     public static void playInventorySound(String stackDisplayName){

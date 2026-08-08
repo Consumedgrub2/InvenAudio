@@ -4,12 +4,13 @@ import java.util.HashMap;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 
 public class SoundResources {
     //Sound hashmaps
-    private static final HashMap<String, ResourceLocation> generalVanillaSoundHashMap = new HashMap<>();
-    private static final HashMap<String, ResourceLocation> generalModdedSoundHashMap = new HashMap<>();
-    private static final HashMap<String, ResourceLocation> specificModdedSoundHashMap = new HashMap<>();
+    public static final HashMap<String, ResourceLocation> generalVanillaSoundHashMap = new HashMap<>();
+    public static final HashMap<String, ResourceLocation> generalModdedSoundHashMap = new HashMap<>();
+    public static final HashMap<String, ResourceLocation> specificModdedSoundHashMap = new HashMap<>();
 
     //Final fallback if no string sound association is found in hashmaps
     private static final ResourceLocation finalFallbackSound = new ResourceLocation("invenaudio:invenaudio_default");
