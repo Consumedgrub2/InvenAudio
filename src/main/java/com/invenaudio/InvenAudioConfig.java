@@ -1,12 +1,19 @@
 package com.invenaudio;
 
+import cpw.mods.fml.client.config.IConfigElement;
+
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InvenAudioConfig {
+
+    // For the gui-based config
+    public static ArrayList<IConfigElement> configProperties = new ArrayList<>();
 
     public static final HashMap<ResourceLocation, Double> sfxVolumeMap = new HashMap<>();
 
@@ -29,28 +36,33 @@ public class InvenAudioConfig {
             fallbackSoundProperty.setMinValue(0.0);
             fallbackSoundProperty.setMaxValue(1.0);
 
+            // Clear to make sure duplicates aren't added while calling again through in-game config gui
+            sfxVolumeMap.clear();
+            configProperties.clear();
+
             for (ResourceLocation resourceLocation : SoundResources.generalVanillaSoundHashMap.values()){
                 Property property = configuration.get("sfx_volume_levels.general_vanilla_sounds", resourceLocation.toString(), 1.0);
                 property.setMinValue(0.0);
                 property.setMaxValue(1.0);
                 sfxVolumeMap.put(resourceLocation, Math.max(0.0, Math.min(1.0, property.getDouble()))); // Ensure that it's within range no matter what
+                configProperties.add(new ConfigElement<>(property));
             }
             for (ResourceLocation resourceLocation : SoundResources.generalModdedSoundHashMap.values()){
                 Property property = configuration.get("sfx_volume_levels.general_modded_sounds", resourceLocation.toString(), 1.0);
                 property.setMinValue(0.0);
                 property.setMaxValue(1.0);
                 sfxVolumeMap.put(resourceLocation, Math.max(0.0, Math.min(1.0, property.getDouble()))); // Ensure that it's within range no matter what
+                configProperties.add(new ConfigElement<>(property));
             }
             for (ResourceLocation resourceLocation : SoundResources.specificModdedSoundHashMap.values()){
                 Property property = configuration.get("sfx_volume_levels.specific_modded_sounds", resourceLocation.toString(), 1.0);
                 property.setMinValue(0.0);
                 property.setMaxValue(1.0);
                 sfxVolumeMap.put(resourceLocation, Math.max(0.0, Math.min(1.0, property.getDouble()))); // Ensure that it's within range no matter what
+                configProperties.add(new ConfigElement<Property>(property));
             }
-
         } catch(Exception e) {
-            Constants.LOGGER.error("There was an issue attempting to write to the log file: " + e.getMessage());
-
+            Constants.LOGGER.error("There was an issue attempting to write to the log file: " + e);
         } finally {
             if (configuration.hasChanged()){
                 configuration.save();

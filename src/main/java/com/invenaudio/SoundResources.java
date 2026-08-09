@@ -1,9 +1,9 @@
 package com.invenaudio;
 
-import java.util.HashMap;
-
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
 
 public class SoundResources {
     // Sound hashmaps

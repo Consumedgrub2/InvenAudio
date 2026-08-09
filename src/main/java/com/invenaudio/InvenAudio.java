@@ -7,10 +7,10 @@ import cpw.mods.fml.common.event.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = Constants.MODID, version = Constants.VERSION, name = Constants.NAME, acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS, dependencies = Constants.DEPENDENCIES)
+@Mod(modid = Constants.MODID, version = Constants.VERSION, name = Constants.NAME, acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS, dependencies = Constants.DEPENDENCIES, guiFactory = "com.invenaudio.gui.InvenAudioGuiFactory")
 public class InvenAudio
 {
-    public static Configuration invenAudioConfig;
+    public static Configuration configuration;
 
     public static final Minecraft MC = Minecraft.getMinecraft();
 
@@ -20,8 +20,10 @@ public class InvenAudio
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
         SoundResources.registerStringSoundAssociations();
-        invenAudioConfig = new Configuration(event.getSuggestedConfigurationFile());
-        InvenAudioConfig.loadConfig(invenAudioConfig);
+
+        // Initialize a new config for this mod
+        configuration = new Configuration(event.getSuggestedConfigurationFile());
+        InvenAudioConfig.loadConfig(configuration);
     }
 
     @EventHandler
